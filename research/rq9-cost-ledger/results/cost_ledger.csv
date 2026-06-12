@@ -1,0 +1,21 @@
+engine,scenario,w_ref,correctness,recall_at_k,leak_rate,p50_ms,p95_ms,delete_ack_ms,unretrievable_ms,ops_until_gone,storage_bytes,source_class,notes
+ReferenceHonest,retrieve.unfiltered,-,PASS,1.0,,2.592552999999498,2.7720198999645618,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+ReferenceHonest,retrieve.tenant_scoped,W5,PASS,1.0,0.0,0.4593679999516098,0.745991400049206,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+ReferenceHonest,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,4.219196000008196,6.0368163999783055,,,,1024000,OBSERVED,as_of=50 [native]; recall=1.000 leak=0.000
+ReferenceHonest,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,physical/per-tenant isolation; live+dead footprint=1024000 bytes
+ReferenceHonest,delete.honest,W6,PASS,1.0,0.0,,,1.1695370000097682,0.5530189999944923,1,1022720,OBSERVED,delete ack=1.170ms; unretrievable after 1 probe(s)
+TombstoneHonest,retrieve.unfiltered,-,PASS,1.0,,3.044934999934412,3.2317593999778182,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+TombstoneHonest,retrieve.tenant_scoped,W5,PASS,1.0,0.0,0.9640350000381659,1.0963157999754003,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+TombstoneHonest,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.9485739999918223,7.154759499951524,,,,1024000,OBSERVED,as_of=50 [native]; recall=1.000 leak=0.000
+TombstoneHonest,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+TombstoneHonest,delete.honest,W6,PASS,1.0,0.0,,,0.004115999900022871,1.1049920000232305,1,1024000,OBSERVED,delete ack=0.004ms; unretrievable after 1 probe(s)
+TombstoneLeaky,retrieve.unfiltered,-,PASS,1.0,,3.07054600000356,3.589773600015177,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+TombstoneLeaky,retrieve.tenant_scoped,W5,PASS,1.0,0.0,0.9635510000407521,1.1357378000411698,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+TombstoneLeaky,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.761239000027672,4.558279000048056,,,,1024000,OBSERVED,as_of=50 [native]; recall=1.000 leak=0.000
+TombstoneLeaky,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+TombstoneLeaky,delete.honest,W6,LEAKS,0.5,0.5,,,0.004622000005838345,,,1024000,OBSERVED,delete ack=0.005ms; STILL RANKABLE after 200 probes (claims-but-leaks window)
+LeakyTenant,retrieve.unfiltered,-,PASS,1.0,,3.0946230000381547,3.5860440000419636,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+LeakyTenant,retrieve.tenant_scoped,W5,LEAKS,0.1416666666666666,0.8583333333333333,3.1138010000404392,3.337926700032767,,,,1024000,OBSERVED,in-tenant recall@10=0.142; out-of-tenant leak=0.858
+LeakyTenant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.8379420000183018,4.097846900049262,,,,1024000,OBSERVED,as_of=50 [native]; recall=1.000 leak=0.000
+LeakyTenant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+LeakyTenant,delete.honest,W6,PASS,0.0,0.0,,,0.00407099992116855,3.612614999951802,1,1024000,OBSERVED,delete ack=0.004ms; unretrievable after 1 probe(s)

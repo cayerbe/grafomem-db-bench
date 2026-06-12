@@ -1,0 +1,6 @@
+GRAFOMEM-DB — vector-database conformance and cost-ledger study
+Copyright 2026 Camilo Ayerbe Posada (GNS Foundation)
+
+Licensed under the Apache License, Version 2.0.
+This artifact accompanies the paper "The Guarantees Hold, the Costs
+Diverge" and the GRAFOMEM benchmark (grafomem-bench v0.2.0).

@@ -1,0 +1,86 @@
+engine,scenario,w_ref,correctness,recall_at_k,leak_rate,p50_ms,p95_ms,delete_ack_ms,unretrievable_ms,ops_until_gone,storage_bytes,source_class,notes
+ReferenceHonest,retrieve.unfiltered,-,PASS,1.0,,0.8474999922327697,0.9726542004500514,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+ReferenceHonest,retrieve.tenant_scoped,W5,PASS,1.0,0.0,0.10900000052060932,0.12015800166409463,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+ReferenceHonest,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,1.2977920123375952,1.3361500037717633,,,,1024000,OBSERVED,as_of=50 [native]; recall=1.000 leak=0.000
+ReferenceHonest,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,physical/per-tenant isolation; live+dead footprint=1024000 bytes
+ReferenceHonest,delete.honest,W6,PASS,1.0,0.0,,,0.2233340055681765,0.10670900519471616,1,1022720,OBSERVED,delete ack=0.223ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PARTIAL,0.6649999999999998,,0.647374996333383,1.9692248009960165,,,,3792896,OBSERVED,"recall@10=0.665; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,PARTIAL,0.22833333333333333,0.0,1.2130420072935522,4.395395700703375,,,,3792896,OBSERVED,in-tenant recall@10=0.228; out-of-tenant leak=0.000
+pgvector,retrieve.as_of,H4/RQ4,PARTIAL,0.6649999999999998,0.0,0.8023339905776083,2.092612595879472,,,,3792896,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=0.665 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3792896,OBSERVED,logical/shared isolation; live+dead footprint=3792896 bytes
+pgvector,delete.honest,W6,PASS,0.0,0.0,,,0.7574580085929483,0.682792000588961,1,3792896,OBSERVED,delete ack=0.757ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PARTIAL,0.6683333333333331,,0.7079999923007563,0.7858250028220937,,,,3801088,OBSERVED,"recall@10=0.668; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,LEAKS,0.14999999999999997,0.8499999999999999,0.5536249955184758,0.8799582981737306,,,,3801088,OBSERVED,in-tenant recall@10=0.150; out-of-tenant leak=0.850
+pgvector,retrieve.as_of,H4/RQ4,PARTIAL,0.6683333333333331,0.0,0.5502919957507402,0.6153501977678388,,,,3801088,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=0.668 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3801088,OBSERVED,logical/shared isolation; live+dead footprint=3801088 bytes
+pgvector,delete.honest,W6,PASS,0.0,0.0,,,0.2985419996548444,0.5678750021615997,1,3801088,OBSERVED,delete ack=0.299ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PARTIAL,0.8883333333333333,,0.702000004821457,0.8247079007560386,,,,3801088,OBSERVED,"recall@10=0.888; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,PARTIAL,0.4966666666666667,0.0,0.6237500056158751,0.696424902707804,,,,3801088,OBSERVED,in-tenant recall@10=0.497; out-of-tenant leak=0.000
+pgvector,retrieve.as_of,H4/RQ4,PARTIAL,0.8883333333333333,0.0,0.6169160042190924,0.6678330057184212,,,,3801088,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=0.888 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3801088,OBSERVED,logical/shared isolation; live+dead footprint=3801088 bytes
+pgvector,delete.honest,W6,PASS,0.1,0.0,,,0.30449999030679464,0.6428340129787102,1,3801088,OBSERVED,delete ack=0.304ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PARTIAL,0.8916666666666665,,0.7747909985482693,0.8309498996823095,,,,3792896,OBSERVED,"recall@10=0.892; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,LEAKS,0.13999999999999996,0.8599999999999999,0.6367919995682314,0.7163917005527765,,,,3792896,OBSERVED,in-tenant recall@10=0.140; out-of-tenant leak=0.860
+pgvector,retrieve.as_of,H4/RQ4,PARTIAL,0.8916666666666665,0.0,0.6251250015338883,0.6817374902311713,,,,3792896,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=0.892 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3792896,OBSERVED,logical/shared isolation; live+dead footprint=3792896 bytes
+pgvector,delete.honest,W6,PASS,0.0,0.0,,,0.29162500868551433,0.5817079945700243,1,3792896,OBSERVED,delete ack=0.292ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PARTIAL,0.9616666666666666,,0.8144169987645,0.8885499002644792,,,,3784704,OBSERVED,"recall@10=0.962; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,PASS,1.0,0.0,0.5510000046342611,0.8855750027578301,,,,3784704,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+pgvector,retrieve.as_of,H4/RQ4,PARTIAL,0.9616666666666666,0.0,0.6648749986197799,0.713762704981491,,,,3784704,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=0.962 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3784704,OBSERVED,logical/shared isolation; live+dead footprint=3784704 bytes
+pgvector,delete.honest,W6,PASS,1.0,0.0,,,0.2684170030988753,0.5479579995153472,1,3784704,OBSERVED,delete ack=0.268ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PARTIAL,0.965,,0.7516660116380081,0.8561875059967861,,,,3801088,OBSERVED,"recall@10=0.965; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,LEAKS,0.145,0.855,0.6600420019822195,0.7153965038014576,,,,3801088,OBSERVED,in-tenant recall@10=0.145; out-of-tenant leak=0.855
+pgvector,retrieve.as_of,H4/RQ4,PARTIAL,0.965,0.0,0.6597079918719828,0.7054534959024749,,,,3801088,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=0.965 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3801088,OBSERVED,logical/shared isolation; live+dead footprint=3801088 bytes
+pgvector,delete.honest,W6,PASS,0.0,0.0,,,0.34766699536703527,0.6602499925065786,1,3801088,OBSERVED,delete ack=0.348ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PASS,1.0,,0.9187079995172098,1.0176416995818727,,,,3801088,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,PASS,1.0,0.0,0.567915994906798,1.3660795040777873,,,,3801088,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+pgvector,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,0.8612920064479113,0.9073207038454711,,,,3801088,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3801088,OBSERVED,logical/shared isolation; live+dead footprint=3801088 bytes
+pgvector,delete.honest,W6,PASS,1.0,0.0,,,0.3053330001421273,0.5404580006143078,1,3801088,OBSERVED,delete ack=0.305ms; unretrievable after 1 probe(s)
+pgvector,retrieve.unfiltered,-,PASS,1.0,,0.9210839925799519,1.0086545036756434,,,,3792896,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+pgvector,retrieve.tenant_scoped,W5,LEAKS,0.1416666666666666,0.8583333333333333,0.8150840003509074,0.8947828988311812,,,,3792896,OBSERVED,in-tenant recall@10=0.142; out-of-tenant leak=0.858
+pgvector,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,0.8565000025555491,0.9313748916611075,,,,3792896,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+pgvector,storage.amplification,H3,N/A,,,,,,,,3792896,OBSERVED,logical/shared isolation; live+dead footprint=3792896 bytes
+pgvector,delete.honest,W6,PASS,0.0,0.0,,,0.3028750070370734,0.8171249937731773,1,3792896,OBSERVED,delete ack=0.303ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,2.4883750011213124,3.379454396781511,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,PASS,1.0,0.0,1.3321250007720664,2.273000009881798,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.2794169965200126,3.915374999633059,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,1.0,0.0,,,1.0451250127516687,1.0267499892506748,1,1022720,OBSERVED,delete ack=1.045ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,2.1790830069221556,2.941445610485971,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,LEAKS,0.1416666666666666,0.8583333333333333,1.362916998914443,3.4713662011199613,,,,1024000,OBSERVED,in-tenant recall@10=0.142; out-of-tenant leak=0.858
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.194290999090299,3.820137497677933,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,0.0,0.0,,,1.0362080065533519,1.1267910012975335,1,1022720,OBSERVED,delete ack=1.036ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,2.230625002994202,3.305537595588248,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,PASS,1.0,0.0,1.3035830052103847,2.118159001111053,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.589166997699067,6.102471203485037,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,1.0,0.0,,,1.0982919920934364,1.161417007097043,1,1022720,OBSERVED,delete ack=1.098ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,2.015958001720719,3.8686293017235576,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,LEAKS,0.1416666666666666,0.8583333333333333,1.2617079919436947,2.1423333018901753,,,,1024000,OBSERVED,in-tenant recall@10=0.142; out-of-tenant leak=0.858
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.2982499978970736,4.302316904067991,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,0.0,0.0,,,1.064625001163222,1.1009580048266798,1,1022720,OBSERVED,delete ack=1.065ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,1.9327920017531142,2.6428498022141866,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,PASS,1.0,0.0,1.2441669969120994,2.2581455952604297,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.3431250049034134,4.244903799553867,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,1.0,0.0,,,1.0630420001689345,1.120208005886525,1,1022720,OBSERVED,delete ack=1.063ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,1.8855840025935322,3.049409006780479,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,LEAKS,0.1416666666666666,0.8583333333333333,1.1824160028481856,2.4682669914909634,,,,1024000,OBSERVED,in-tenant recall@10=0.142; out-of-tenant leak=0.858
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.365959011716768,4.044616900500841,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,0.0,0.0,,,1.8962920003104955,1.7664589977357537,1,1022720,OBSERVED,delete ack=1.896ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,2.583791996585205,3.5118081912514754,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,PASS,1.0,0.0,1.494124997407198,3.0511582051985857,,,,1024000,OBSERVED,in-tenant recall@10=1.000; out-of-tenant leak=0.000
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.6003340064780787,4.465429398987907,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,1.0,0.0,,,1.1431660095695406,1.6923329967539757,1,1022720,OBSERVED,delete ack=1.143ms; unretrievable after 1 probe(s)
+qdrant,retrieve.unfiltered,-,PASS,1.0,,2.2642499970970675,3.1670420081354678,,,,1024000,OBSERVED,"recall@10=1.000; baseline, no guarantee under test"
+qdrant,retrieve.tenant_scoped,W5,LEAKS,0.1416666666666666,0.8583333333333333,1.4651250094175339,2.9944535970571438,,,,1024000,OBSERVED,in-tenant recall@10=0.142; out-of-tenant leak=0.858
+qdrant,retrieve.as_of,H4/RQ4,PASS,1.0,0.0,3.266041007009335,3.9693251892458643,,,,1024000,OBSERVED,as_of=50 [emulated/metadata-filter]; recall=1.000 leak=0.000
+qdrant,storage.amplification,H3,N/A,,,,,,,,1024000,OBSERVED,logical/shared isolation; live+dead footprint=1024000 bytes
+qdrant,delete.honest,W6,PASS,0.0,0.0,,,1.0833330015884712,1.2437920086085796,1,1022720,OBSERVED,delete ack=1.083ms; unretrievable after 1 probe(s)

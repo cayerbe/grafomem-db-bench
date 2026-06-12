@@ -1,0 +1,34 @@
+# Throwaway pgvector for RQ9 / RQ7 control.
+#   docker compose up -d        # start
+#   docker compose down         # stop (data is ephemeral, see tmpfs below)
+#
+# DSN: postgresql://rq9:rq9@127.0.0.1:5433/rq9
+# The harness DROPs/CREATEs its table on each run, so a fresh in-RAM instance is
+# all you need -- nothing here is meant to persist.
+services:
+  pgvector:
+    image: pgvector/pgvector:pg17
+    container_name: rq9-pgvector
+    shm_size: "1g"        # parallel HNSW build uses shared memory; Docker default 64MB
+                          # cannot host maintenance_work_mem=512MB (DiskFull at N>=1e5)
+    environment:
+      POSTGRES_USER: rq9
+      POSTGRES_PASSWORD: rq9
+      POSTGRES_DB: rq9
+    ports:
+      - "127.0.0.1:5433:5432"
+    tmpfs:
+      - /var/lib/postgresql/data    # ephemeral: storage_bytes measures a clean tree
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rq9 -d rq9"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: rq9-qdrant
+    ports:
+      - "127.0.0.1:6333:6333"
+    tmpfs:
+      - /qdrant/storage               # ephemeral: every run starts clean
