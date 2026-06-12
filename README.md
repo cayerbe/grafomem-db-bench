@@ -2,7 +2,7 @@
 
 Artifact for: *The Guarantees Hold, the Costs Diverge: A Two-Sided
 Conformance and Cost-Ledger Study of Vector Databases for Governed Agent
-Memory* (Zenodo DOI: TODO). Companion benchmark paper: GRAFOMEM
+Memory* (Concept DOI: 10.5281/zenodo.20666338 (this snapshot: 10.5281/zenodo.20666339)). Companion benchmark paper: GRAFOMEM
 (academia.edu/167598244).
 
 ## What's here
